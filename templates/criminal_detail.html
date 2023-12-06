@@ -1,0 +1,30 @@
+<!-- cases/templates/criminal_detail.html -->
+{% extends 'base.html' %} {% block content %}
+<div class="container mx-auto my-8">
+  <h2 class="text-3xl font-bold mb-4">Criminal Case Details</h2>
+
+  <div class="flex items-center justify-center">
+    <img
+      src="{{ criminal_case.individual.image.url }}"
+      alt="{{ criminal_case.individual.firstname }} {{ criminal_case.individual.lastname }}"
+      class="w-32 h-32 rounded-full mr-4"
+    />
+
+    <div>
+      <h3 class="text-xl font-bold">
+        {{ criminal_case.individual.firstname }} {{ criminal_case.individual.lastname }}
+      </h3>
+      <p>Date of Birth: {{ criminal_case.individual.dob }}</p>
+    </div>
+  </div>
+
+  <h4 class="text-lg font-bold mt-4">Crime Details</h4>
+  <p>{{ criminal_case.description }}</p>
+
+  <h4 class="text-lg font-bold mt-4">Report Details</h4>
+  <p>Case Number: {{ criminal_case.case_number }}</p>
+  <p>Date Reported: {{ criminal_case.date_reported }}</p>
+  <p>Reported By: {{ criminal_case.reported_by.username }}</p>
+  <p>Location: {{ criminal_case.location }}</p>
+</div>
+{% endblock content %}

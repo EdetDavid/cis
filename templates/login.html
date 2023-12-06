@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% load widget_tweaks %} 
+
+{% block content %}
+    <div class="container mx-auto my-8">
+        <h2 class="text-3xl font-bold mb-4 text-center">Login</h2>
+
+        <form method="post" action="{% url 'user_login' %}" class="max-w-md mx-auto bg-white text-gray-600 p-8 rounded-md shadow-md">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                {{ form.username.label_tag }}
+                {{ form.username|add_class:"border p-2 w-full focus:outline-none focus:border-blue-500 rounded-md" }}
+                
+                {% if form.errors.username %}
+                    <p class="text-red-500 text-sm">{{ form.errors.username.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.password.label_tag }}
+                {{ form.password|add_class:"border p-2 w-full focus:outline-none focus:border-blue-500 rounded-md" }}
+                
+                {% if form.errors.password %}
+                    <p class="text-red-500 text-sm">{{ form.errors.password.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none focus:shadow-outline-blue hover:bg-blue-600">Login</button>
+            </div>
+
+            {% if form.non_field_errors %}
+                <p class="text-red-500 text-sm mt-2">{{ form.non_field_errors.0 }}</p>
+            {% endif %}
+        </form>
+    </div>
+{% endblock content %}

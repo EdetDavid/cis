@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Hero Section -->
+<header class="bg-red-600 p-12 text-center">
+  <h1 class="text-4xl font-bold mb-4">Criminal Information System</h1>
+  <p class="text-lg">
+    Efficiently manage criminal cases and related information.
+  </p>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto my-8">
+  <!-- Criminal Cases Section -->
+  <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-4">Recent Criminal Cases</h2>
+
+    <!-- Example Case Card (Repeat as needed) -->
+
+    {% for case in cases %}
+    <div class="bg-gray-800 p-6 rounded-lg shadow-md mb-3">
+      <h3 class="text-xl font-bold mb-2">Case {{ case.case_number }}</h3>
+      <p class="text-gray-400">{{ case.description }}</p>
+      <a
+        href="{% url 'criminal_detail' case.case_number %}"
+        class="text-blue-500 hover:underline"
+        >View Details</a
+      >
+    </div>
+    {% endfor %}
+  </section>
+</main>
+
+{% endblock content %}

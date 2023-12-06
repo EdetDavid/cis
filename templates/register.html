@@ -1,0 +1,46 @@
+{% extends 'base.html' %}{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container mx-auto my-8">
+        <h2 class="text-3xl font-bold mb-4">Register</h2>
+
+        <form method="post" action="{% url 'user_register' %}" class="max-w-md mx-auto bg-white text-gray-600 p-8 rounded-md shadow-md">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                {{ form.username.label_tag }}
+                {{ form.username|add_class:"border p-2 w-full focus:outline-none focus:border-blue-500 rounded-md" }}
+                
+                {% if form.errors.username %}
+                    <p class="text-red-500 text-sm">{{ form.errors.username.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.password1.label_tag }}
+                {{ form.password1|add_class:"border p-2 w-full focus:outline-none focus:border-blue-500 rounded-md" }}
+                
+                {% if form.errors.password1 %}
+                    <p class="text-red-500 text-sm">{{ form.errors.password1.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                {{ form.password2.label_tag }}
+                {{ form.password2|add_class:"border p-2 w-full focus:outline-none focus:border-blue-500 rounded-md" }}
+                
+                {% if form.errors.password2 %}
+                    <p class="text-red-500 text-sm">{{ form.errors.password2.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md focus:outline-none focus:shadow-outline-green hover:bg-green-600">Register</button>
+            </div>
+
+            {% if form.non_field_errors %}
+                <p class="text-red-500 text-sm mt-2">{{ form.non_field_errors.0 }}</p>
+            {% endif %}
+        </form>
+    </div>
+{% endblock content %}

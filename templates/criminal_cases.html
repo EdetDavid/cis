@@ -1,0 +1,36 @@
+<!-- cases/templates/criminal_cases.html -->
+{% extends 'base.html' %} 
+{% block content %}
+    <div class="container mx-auto my-8 text-black  ">
+        <h2 class="text-3xl font-bold mb-4 text-gray-400"> Criminal Cases</h2>
+
+        {% if criminal_cases %}
+            <table class="min-w-full p-3  bg-white border border-gray-300">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">Case Number</th>
+                        <th class="py-2 px-4 border-b">Criminal Name</th>
+                        <th class="py-2 px-4 border-b">Description</th>
+                        <th class="py-2 px-4 border-b">Date Reported</th>
+                        <th class="py-2 px-4 border-b">Reported By</th>
+                        <th class="py-2 px-4 border-b">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for case in criminal_cases %}
+                        <tr>
+                            <td class="py-2 px-4 border-b">{{ case.case_number }}</td>
+                            <td class="py-2 px-4 border-b">{{ case.individual.firstname }} {{ case.individual.lastname }}</td>
+                            <td class="py-2 px-4 border-b">{{ case.description }}</td>
+                            <td class="py-2 px-4 border-b">{{ case.date_reported }}</td>
+                            <td class="py-2 px-4 border-b">{{ case.reported_by.username }}</td>
+                            <td class="py-2 px-4 border-b">{{ case.location }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No criminal cases available.</p>
+        {% endif %}
+    </div>
+{% endblock content %}

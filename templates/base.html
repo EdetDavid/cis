@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criminal Information System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        min-height: 100vh; /* Set the body to at least the height of the viewport */
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1; /* Grow to fill the available space */
+      }
+
+      /* Sticky footer styles */
+      footer {
+        margin-top: auto; /* Push the footer to the bottom */
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="{% url 'home' %}"> <h1 class="text-2xl font-bold">CIS</h1></a>
+        <div class="space-x-4">
+          <a href="/" class="hover:text-gray-300">Home</a>
+          <a href="{% url 'add_criminal_case' %}" class="hover:text-gray-300"
+            >Add Case</a
+          >
+          <a href="{% url 'criminal_cases' %}" class="hover:text-gray-300"
+            >Criminal Cases</a
+          >
+          {% if user.is_authenticated %}
+          <a href="{% url 'user_logout' %}" class="hover:text-gray-300"
+            >Logout</a
+          >
+          {% else %}
+          <a href="{% url 'user_login' %}" class="hover:text-gray-300">Login</a>
+          <a href="{% url 'user_register' %}" class="hover:text-gray-300"
+            >Register</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main>{% block content %} {% endblock content %}</main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 p-4 text-center">
+      <p>&copy; 2023 Criminal Information System</p>
+    </footer>
+  </body>
+</html>
